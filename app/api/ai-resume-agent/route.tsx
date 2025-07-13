@@ -10,7 +10,6 @@ export async function POST(req: NextRequest) {
     const resumeFile = formData.get("resumeFile");
     const recordId = formData.get("recordId");
 
-    // ✅ Validate file
     if (!resumeFile || !(resumeFile instanceof File)) {
       return NextResponse.json({ message: "Invalid or missing resume file" }, { status: 400 });
     }
@@ -18,7 +17,6 @@ export async function POST(req: NextRequest) {
     const arrayBuffer = await resumeFile.arrayBuffer();
     const blob = new Blob([arrayBuffer], { type: "application/pdf" });
 
-    // ✅ Load PDF and extract text
     const loader = new WebPDFLoader(blob);
     const docs = await loader.load();
     const pdfText = docs[0]?.pageContent;
@@ -26,7 +24,6 @@ export async function POST(req: NextRequest) {
     const user = await currentUser();
     const base64 = Buffer.from(arrayBuffer).toString("base64");
 
-    // ✅ Trigger Inngest
     const resultIds = await inngest.send({
       name: "AiResumeAgent",
       data: {
@@ -43,7 +40,6 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: "Failed to trigger AI agent" }, { status: 500 });
     }
 
-    // ✅ Poll for completion
     let runStatus;
     while (true) {
       runStatus = await getRuns(runId);
@@ -52,19 +48,14 @@ export async function POST(req: NextRequest) {
     }
 
     const rawOutput = runStatus.data?.[0]?.output?.output?.[0];
-
-    // ✅ Log for debugging
     console.log("✅ Final AI Output:", rawOutput);
 
-    // ✅ Graceful fallback
     if (!rawOutput) {
-      console.warn("⚠️ AI returned no output, sending fallback response.");
       return NextResponse.json({
         message: "AI analysis completed but returned no output.",
       });
     }
 
-    // ✅ Ensure JSON safe response
     const safeOutput = JSON.parse(JSON.stringify(rawOutput));
     return NextResponse.json(safeOutput);
 
@@ -80,8 +71,8 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// ✅ Fetch Inngest run result
-export async function getRuns(runId: string) {
+// 🔧 FIXED: removed export
+async function getRuns(runId: string) {
   const result = await axios.get(
     `${process.env.INNGEST_SERVER_HOST}/v1/events/${runId}/runs`,
     {

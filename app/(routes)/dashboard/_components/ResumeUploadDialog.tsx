@@ -38,11 +38,8 @@ function ResumeUploadDialog({
   formData.append("recordId", recordId);
   formData.append("resumeFile", file);
   //@ts-ignore
-  const hasSubscriptionEnabledPro=await has({plan:'pro'})
-  //@ts-ignore
-  const hasSubscriptionEnabled=await has({plan:'premium'})
-  console.log("PLan Started",hasSubscriptionEnabled)
-  if(!hasSubscriptionEnabled || !hasSubscriptionEnabledPro){
+  const hasSubscriptionEnabled=await has({plan:'free_user'})
+  if(hasSubscriptionEnabled ){
     toast("Upgrade your Plan to Pro or Premium");
     router.push("/billing")
 
