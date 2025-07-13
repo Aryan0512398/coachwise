@@ -113,3 +113,19 @@ body {
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
+.no-scrollbar {
+  scrollbar-width: none;          /* Firefox */
+  -ms-overflow-style: none;       /* IE and Edge */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;                  /* Chrome, Safari */
+}
+.tips-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.tips-scroll {
+  -ms-overflow-style: none; /* for Internet Explorer and Edge */
+  scrollbar-width: none;    /* for Firefox */
+}
