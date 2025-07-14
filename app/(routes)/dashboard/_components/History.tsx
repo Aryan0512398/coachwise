@@ -83,7 +83,7 @@ function History() {
           </Button>
         </div>
       ) : (
-        <div className="mt-2">
+        <div className="mt-2 sm:text-sm md:text-xl ">
           {userHistory?.map((history: any, index: number) => (
             <Link
               href={history?.aiAgentType + "/" + history?.recordId}
