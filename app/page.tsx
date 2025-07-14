@@ -256,7 +256,7 @@ export default function Home() {
         <p className="text-lg text-[#5a189a] mb-6">
           CoachWise gives you the edge. Start improving your career today — no resume left behind!
         </p>
-        <Link href={user ? "/dashboard/explore" : "/sign-in"}>
+        <Link href={user ? "/dashboard" : "/sign-in"}>
           <Button className="bg-[#BA55D3] hover:bg-[#9b00c5] text-white rounded-xl text-lg px-8 py-3 transition">
             Get Started for Free
           </Button>
