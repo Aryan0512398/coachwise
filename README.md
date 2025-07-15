@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧠 CoachWise – Your AI Career Coach
 
-## Getting Started
+CoachWise is an AI-powered career development platform that helps users generate resumes, personalized roadmaps, and career insights using modern LLMs like Gemini. It’s a one-stop tool for students, professionals, and job seekers to grow in their careers with real-time coaching.
 
-First, run the development server:
+---
+
+## 🚀 Features
+
+- ✅ **Resume Analyzer** – Upload a resume and get instant AI-generated feedback.
+- 🧠 **Career Q&A Assistant** – Ask questions like “How to become a frontend dev?” and get guided AI responses.
+- 🗺️ **Roadmap Generator** – Auto-generates a skill roadmap based on your target career.
+- 📝 **Cover Letter Generator** – *(Coming Soon)* Auto-draft tailored cover letters for job roles.
+- 🔐 **Clerk Authentication** – Sign up and login securely via Clerk.
+- 💳 **Stripe Billing** – Manage subscriptions for premium features.
+- ⚙️ **Inngest Background Jobs** – Handle resume parsing, roadmap generation, and more.
+- 📄 **PDF Rendering** – Preview resume and AI insights side-by-side.
+
+---
+
+## 🧱 Tech Stack
+
+| Area              | Technology                             |
+|-------------------|----------------------------------------|
+| Frontend          | Next.js 15, Tailwind CSS, ShadCN UI    |
+| Animations        | Framer Motion                          |
+| AI Integration    | Gemini API (via LangChain + axios)     |
+| Authentication    | Clerk                                  |
+| Billing           | Stripe                                 |
+| Background Jobs   | Inngest                                 |
+| Database          | Neon (PostgreSQL) + Drizzle ORM        |
+| File Uploads      | ImageKit                               |
+| Email             | Resend                                 |
+| Roadmap Diagrams  | @xyflow/react (React Flow)             |
+
+---
+
+## 📸 Live Demo
+
+👉 [https://coachwise.vercel.app](https://coachwise.vercel.app)
+
+---
+
+# 🛠️ Getting Started – CoachWise
+
+Set up and run the CoachWise project locally in 4 simple steps.
+
+---
+
+## ✅ 1. Clone the Repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/Aryan0512398/coachwise.git
+cd coachwise
 ```
+## ✅ 2. Install Dependencies
+```bash
+npm install
+```
+## ✅ 3 Create .env File
+```bash
+cp .env.example .env
+```
+## 🔐 .env Configuration Reference
+#### Database
+NEXT_PUBLIC_NEON_DB_CONNECTION_STRING=
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### Clerk Auth
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=/
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL=/
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+#### Inngest
+INNGEST_SIGNING_KEY=local.dev
+INNGEST_SERVER_HOST=http://127.0.0.1:8288
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+#### ImageKit
+IMAGE_KIT_PUBLIC_KEY=
+IMAGE_KIT_PRIVATE_KEY=
+IMAGE_KIT_ENDPOINT_URL=
 
-## Learn More
+#### Resend Email
+RESEND_API_KEY=
+## ✅ 4. Run the Project
+```bash
+npm run dev
+```
+Visit the app at 👉 http://localhost:3000
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
